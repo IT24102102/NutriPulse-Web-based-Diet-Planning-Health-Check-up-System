@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+</head>
+<body>
+<h2>BMI Calculator</h2>
+<label>Weight (kg):</label>
+<input type="number" id="weight"><br><br>
+
+<label>Height (cm):</label>
+<input type="number" id="height"><br><br>
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<h3>Result:</h3>
+<pre id="result"></pre>
+
+<script>
+    async function calculateBMI() {
+        const weight = parseFloat(document.getElementById("weight").value);
+        const height = parseFloat(document.getElementById("height").value);
+
+        const res = await fetch("http://localhost:8080/api/bmi/calculate", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({weight, height})
+        });
+
+        const data = await res.json();
+        document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+    }
+</script>
+</body>
+</html>
