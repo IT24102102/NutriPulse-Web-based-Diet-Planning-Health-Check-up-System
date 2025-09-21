@@ -1,4 +1,4 @@
-package com.example.dietapp.controller;
+package com.healthpath.controller;
 
 import org.springframework.web.bind.annotation.*;
 

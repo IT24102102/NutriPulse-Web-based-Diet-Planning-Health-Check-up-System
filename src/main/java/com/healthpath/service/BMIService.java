@@ -1,6 +1,6 @@
-package com.example.dietapp.service;
+package com.healthpath.service;
 
-import com.example.dietapp.model.BMIResponse;
+import com.healthpath.model.BMIResponse;
 import org.springframework.stereotype.Service;
 
 @Service

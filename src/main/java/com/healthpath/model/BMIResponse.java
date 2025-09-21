@@ -1,4 +1,4 @@
-package com.example.dietapp.model;
+package com.healthpath.model;
 
 public class BMIResponse {
     private double bmi;

@@ -1,0 +1,175 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f0f0 url('/images/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #2c3e50;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: -1;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #2c3e50;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #3498db;
+}
+
+.basket {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.hero, .features, .how-it-works, .testimonials, .cta, .insights, .affiliations, .faq {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.features h2, .how-it-works h2, .testimonials h2, .cta h2, .insights h2, .affiliations h2, .faq h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.feature-item {
+    margin-bottom: 2rem;
+}
+
+.feature-item h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+
+.feature-item img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    margin: 0.5rem;
+}
+
+.how-it-works ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.how-it-works li {
+    margin: 0.5rem 0;
+}
+
+.testimonials .testimonial-item {
+    margin: 1rem 0;
+    background: rgba(44, 62, 80, 0.1);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.testimonials cite {
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+.cta {
+    background-color: #ecf0f1;
+    padding: 3rem;
+}
+
+.affiliations .affiliation-logo {
+    display: inline-block;
+    margin: 0 1rem;
+    height: 50px;
+    /* Replace with actual logo images or placeholders */
+}
+
+.faq .faq-item {
+    margin: 1rem 0;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: #3498db;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+img.loaded {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+}
+
+img[loading="lazy"] {
+    opacity: 0;
+}

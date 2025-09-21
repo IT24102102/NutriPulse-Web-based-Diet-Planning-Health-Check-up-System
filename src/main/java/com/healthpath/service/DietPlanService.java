@@ -1,8 +1,8 @@
-package com.example.dietapp.service;
+package com.healthpath.service;
 
-import com.example.dietapp.model.DietPlan;
-import com.example.dietapp.repository.DietPlanRepository;
-import com.example.dietapp.repository.UserRepository;
+import com.healthpath.model.DietPlan;
+import com.healthpath.repository.DietPlanRepository;
+import com.healthpath.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

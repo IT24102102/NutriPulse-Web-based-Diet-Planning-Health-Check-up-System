@@ -1,11 +1,12 @@
-package com.example.dietapp;
+package com.healthpath;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class  DietAppApplication {
+public class HealthPathApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DietAppApplication.class, args);
+
+        SpringApplication.run(HealthPathApplication.class, args);
     }
 }
