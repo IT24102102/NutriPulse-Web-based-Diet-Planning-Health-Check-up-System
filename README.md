@@ -1,1 +1,1 @@
-# HealthPath-Web-based-Diet-Planning-Health-Check-up-System
+# NutriPulse-Web-based-Diet-Planning-Health-Check-up-System
