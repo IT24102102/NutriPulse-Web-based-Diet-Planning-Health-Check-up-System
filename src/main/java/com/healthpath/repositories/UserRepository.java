@@ -1,6 +1,6 @@
-package com.healthpath.repository;
+package com.healthpath.repositories;
 
-import com.healthpath.model.User;
+import com.healthpath.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

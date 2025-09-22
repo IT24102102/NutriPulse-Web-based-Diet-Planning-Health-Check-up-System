@@ -1,4 +1,4 @@
-package com.healthpath.model;
+package com.healthpath.models;
 
 public class BMIResponse {
     private double bmi;

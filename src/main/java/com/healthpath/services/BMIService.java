@@ -1,6 +1,6 @@
-package com.healthpath.service;
+package com.healthpath.services;
 
-import com.healthpath.model.BMIResponse;
+import com.healthpath.models.BMIResponse;
 import org.springframework.stereotype.Service;
 
 @Service

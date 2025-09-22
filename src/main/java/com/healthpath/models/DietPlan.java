@@ -1,4 +1,4 @@
-package com.healthpath.model;
+package com.healthpath.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
