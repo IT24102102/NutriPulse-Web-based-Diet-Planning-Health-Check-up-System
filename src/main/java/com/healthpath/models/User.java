@@ -1,22 +1,26 @@
 package com.healthpath.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.*;
 
 @Entity
-@Data
+@Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String email;
-    private String password;  // To be hashed later
-    private String role;  // PATIENT, NUTRITIONIST, PHYSICIAN
-    private double weight;
-    private double height;
-    private String healthNotes;  // e.g., diabetes, nut allergy
+    private Long user_id;
+
+    private String first_name;
+    private String last_name;
+    private String password_hash; // matches your DB
+    private String role;
+
+    private String profile_image_url;
+    private String specialization;
+    private String bio;
+    private String default_meeting_url;
+
+    private Boolean is_enabled;
+
+    // getters & setters
 }
