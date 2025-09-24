@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
-    <style>
-        .container { max-width: 300px; margin: 50px auto; padding: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; }
-        input { width: 100%; padding: 8px; }
-        button { padding: 10px; }
-    </style>
+    <title>Login - HealthPath</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <div class="container">
-    <h2>Login</h2>
-    <form th:action="@{/login}" method="post">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit">Login</button>
+    <h1>Welcome Back!</h1>
+    <h3>Login to access your personalized health dashboard</h3>
+    <form action="#" method="post" class="auth-form">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button class="btn login-btn" type="submit">Login</button>
     </form>
+    <p>Don't have an account? <a href="/signup">Sign Up</a></p>
 </div>
 </body>
 </html>
