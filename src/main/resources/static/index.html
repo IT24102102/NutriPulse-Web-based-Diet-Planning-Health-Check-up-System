@@ -1,148 +1,275 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriPulse - Take Charge of Your Health</title>
-    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+    <title>HealthPath - Diet Planning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('/images/bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            z-index: -1;
+        }
+
+        /* Header */
+        .site-header {
+            background-color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .welcome-message {
+            font-size: 1.2rem;
+            color: #ccc;
+            font-weight: bold;
+            flex: 1;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .buttons button {
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .login-btn { background-color: #444; color: white; }
+        .signup-btn { background-color: #2ecc71; color: white; }
+
+        /* Card Grid */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .diet-card {
+            width: 220px;
+            height: 300px;
+            perspective: 1000px;
+        }
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease-in-out;
+        }
+        .diet-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+        }
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        .card-back {
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: rotateY(180deg);
+        }
+        .diet-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .view-btn {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Carousel */
+        .carousel-section {
+            margin: 3rem 0;
+        }
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 1rem 0;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 40s linear infinite;
+        }
+        .carousel-item {
+            flex: 0 0 auto;
+            width: 250px;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+        }
+        .carousel-item-title {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        footer {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-<!-- Header -->
+
 <header class="site-header">
-    <div class="logo">NutriPulse</div>
-    <div class="basket">Your Basket <span>0 item(s)</span> | Free delivery on plans</div>
-    <nav class="nav-links">
-        <a th:href="@{/}">Home</a>
-        <a th:href="@{/register}">Register</a>
-        <a th:href="@{/login}">Login</a>
-    </nav>
-</header>
+    <div class="logo">HealthPath</div>
+    <div class="welcome-message">Welcome to HealthPath!</div>
+    <div class="nav-links">
+        <!-- <a th:href="@{/}">Home</a>
+         <a th:href="@{/diet-plans}">Diet Plans</a>
+         <a th:href="@{/health-check}">Health Check</a> -->
+        <div class="buttons">
+            <button class="login-btn" th:onclick="|window.location.href='@{/login}'|">Login</button>
+            <button class="signup-btn" th:onclick="|window.location.href='@{/signup}'|">Signup</button>
+        </div>
 
-<!-- Hero Section -->
-<section class="hero">
-    <h1>Get your health on the right path</h1>
-    <p class="subtitle">Find the answers you’ve been looking for, and get the support you need to feel great again.</p>
-    <p>We help people take charge of their overall wellness. We use Functional Nutrition to address the root cause of your health issues—and show you how to achieve great vitality via smart, sustainable changes.</p>
-    <a th:href="@{/about}" class="btn">Read More</a>
-</section>
+    </div>
+ </header>
 
-<!-- Features Section -->
-<section class="features">
-    <h2>Our Approach to Wellness</h2>
-    <div class="feature-item">
-        <h3>#01 In-depth Investigations</h3>
-        <p>From advanced health tests to lifestyle assessments, we take a holistic view to find the root cause of your symptoms.</p>
-        <img src="/images/health-tests.jpg" alt="Healthpath surveys and tests" loading="lazy">
-        <img src="/images/health-tests.jpg" alt="Healthpath surveys and tests" loading="lazy">
-    </div>
-    <div class="feature-item">
-        <h3>#02 Personalised Plans</h3>
-        <p>Rebalance your body and life with nutrition, supplements, and lifestyle advice tailored to you.</p>
-        <img src="/images/health-plans.jpg" alt="Healthpath health plans and recommendations" loading="lazy">
-        <img src="/images/health-plans.jpg" alt="Healthpath health plans and recommendations" loading="lazy">
-    </div>
-    <div class="feature-item">
-        <h3>#03 Ongoing Support</h3>
-        <p>Get the emotional support and expertise you need, from live sessions to easy-to-understand education.</p>
-        <img src="/images/support-resources.jpg" alt="Healthpath support webinars, memberships and educational resources" loading="lazy">
-        <img src="/images/support-resources.jpg" alt="Healthpath support webinars, memberships and educational resources" loading="lazy">
-    </div>
-    <a th:href="@{/how-it-works}" class="btn">How It Works</a>
-</section>
+ <h3 style="text-align:center; margin-top:20px;">Get your health on the right path </h3>
 
-<!-- How It Works Section -->
-<section class="how-it-works">
-    <h2>Real Health Through Personalised Nutrition</h2>
-    <p>We take a 360° approach for a healthier and happier life</p>
-    <ul>
-        <li>Assessments: Advanced tests and surveys to understand your body’s clues</li>
-        <li>Food: Nutrition impacts every organ and cell, helping or hindering you</li>
-        <li>Lifestyle: Balance in life affects your mind, brain, and body</li>
-        <li>Supplements: Professional-grade support for your health program</li>
-        <li>Support: The right support is the magic ingredient</li>
-        <li>Education: Taking charge is the best life investment</li>
-    </ul>
-</section>
+ <!-- Carousel -->
+<section class="carousel-section">
+    <h2 style="text-align:center; font-size:2rem;">Our Services</h2>
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <div class="carousel-item">
+                <img src="/images/DietPlan.jpg" alt="Diet Plans">
+                <div class="carousel-item-title">Diet Plans</div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/communication.jpg" alt="Communication">
+                <div class="carousel-item-title">Communication</div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/content.jpg" alt="Articles">
+                <div class="carousel-item-title">Articles</div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/Reminder.jpg" alt="Reminders">
+                <div class="carousel-item-title">Reminders</div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/track.jpg" alt="Monitoring">
+                <div class="carousel-item-title">Monitoring</div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/Appointment.png" alt="Appointment">
+                <div class="carousel-item-title">Appointment</div>
+            </div>
 
-<!-- Testimonials Section -->
-<section class="testimonials">
-    <h2>Trustpilot Reviews</h2>
-    <p>TrustScore 4.6 | 150 reviews</p>
-    <div class="testimonial-item">
-        <p>"NutriPulse changed my life. They provided in-depth info to improve my energy and wellness. I feel happier and more connected."</p>
-        <cite>Abha Howson <a th:href="@{/reviews/abha}">Read more</a></cite>
-    </div>
-    <div class="testimonial-item">
-        <p>"Super supportive with clear, step-by-step plans tailored to my needs."</p>
-        <cite>Hannah Kate <a th:href="@{/reviews/hannah}">Read more</a></cite>
-    </div>
-    <div class="testimonial-item">
-        <p>"Excellent service, affordable plans, and great support. Highly recommend!"</p>
-        <cite>Julie Ford <a th:href="@{/reviews/julie}">Read more</a></cite>
+        </div>
     </div>
 </section>
 
-<!-- CTA Section -->
-<section class="cta">
-    <h2>What's your root cause?</h2>
-    <p>Find out today with our team of experts</p>
-    <a th:href="@{/plans}" class="btn">See Our Plans</a>
-</section>
-
-<!-- Insights Section -->
-<section class="insights">
-    <h2>Latest Insights from Our Experts</h2>
-    <!-- Placeholder for dynamic content -->
-    <div class="insight-item">healthpath</div>
-</section>
-
-<!-- Affiliations Section -->
-<section class="affiliations">
-    <h2>Practitioner Registrations</h2>
-    <div class="affiliation-logo">ANP logo</div>
-    <div class="affiliation-logo">BANT logo</div>
-    <div class="affiliation-logo">IFM logo</div>
-</section>
-
-<!-- FAQ Section -->
-<section class="faq">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-item">
-        <h3>Why is overall health so important?</h3>
-        <p>Your body’s wellness starts with nutrition and lifestyle. Imbalances can affect energy, mood, and more.</p>
+<!-- Cards -->
+<h2 style="text-align:center;">Explore Free Diet Plans</h2>
+<div class="cards-container">
+    <div class="diet-card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="/images/diet1.jpg" alt="Weight Loss">
+            </div>
+            <div class="card-back">
+                <p class="diet-title">Weight Loss</p>
+                <button class="view-btn" th:onclick="|window.location.href='@{/diet/weight-loss}'|">View</button>
+            </div>
+        </div>
     </div>
-    <div class="faq-item">
-        <h3>How can NutriPulse help me?</h3>
-        <p>We offer personalised plans, tests, and support to take charge of your health. Email us at hello@nutripulse.com.</p>
+    <div class="diet-card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="/images/diet2.jpg" alt="Muscle Gain">
+            </div>
+            <div class="card-back">
+                <p class="diet-title">Muscle Gain</p>
+                <button class="view-btn" th:onclick="|window.location.href='@{/diet/muscle-gain}'|">View</button>
+            </div>
+        </div>
     </div>
-    <div class="faq-item">
-        <h3>What is Functional Nutrition?</h3>
-        <p>A solution-focused approach addressing root causes through diet and lifestyle, complementing conventional care.</p>
+    <div class="diet-card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="/images/diet3.jpg" alt="Balanced Diet">
+            </div>
+            <div class="card-back">
+                <p class="diet-title">Balanced Diet</p>
+                <button class="view-btn" th:onclick="|window.location.href='@{/diet/balanced}'|">View</button>
+            </div>
+        </div>
     </div>
-</section>
+</div>
 
-<!-- Footer -->
 <footer>
-    <p>&copy; 2025 NutriPulse. All rights reserved.</p>
-    <a th:href="@{/contact}">Contact Us</a> |
-    <a th:href="@{/privacy}">Privacy Policy</a> |
-    <a th:href="@{/terms}">Terms of Service</a>
+    <p>&copy; 2025 HealthPath | Eat Smart, Live Better</p>
 </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        let loaded = 0;
-        images.forEach(img => {
-            const newImg = new Image();
-            newImg.src = img.src;
-            newImg.onload = () => {
-                loaded++;
-                img.classList.add('loaded');
-            };
-            newImg.onerror = () => console.error(`Failed to load ${img.src}`);
-        });
-    });
-</script>
 </body>
 </html>
