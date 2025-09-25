@@ -1,14 +1,18 @@
 package com.healthpath.repositories;
 
+import com.healthpath.model.UserLog;
 import com.healthpath.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 
-public interface UserLogRepository extends JpaRepository<User, Long> {
-    @Query("SELECT u FROM User u JOIN user_contact uc ON u.user_id = uc.user_id WHERE uc.value = :email AND uc.contact_type = 'EMAIL'")
-    Optional<User> findByEmail(@Param("email") String email);
+@Repository
+public interface UserLogRepository extends JpaRepository<UserLog, Long> {
 
+    // Find all logs for a specific user
+    List<UserLog> findByUser(User user);
+
+    // Optional: find by user and log type
+    List<UserLog> findByUserAndLogType(User user, String logType);
 }
