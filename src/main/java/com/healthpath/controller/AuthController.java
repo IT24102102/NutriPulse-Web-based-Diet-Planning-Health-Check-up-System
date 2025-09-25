@@ -1,4 +1,4 @@
-package com.healthpath.controllers;
+package com.healthpath.controller;
 
 import com.healthpath.models.User;
 import com.healthpath.services.AuthService;
@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
 
     @Autowired
     private AuthService authService;
