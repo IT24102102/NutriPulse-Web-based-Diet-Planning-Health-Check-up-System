@@ -1,6 +1,6 @@
 package com.healthpath.repositories;
 
-import com.healthpath.model.UserLog;
+import com.healthpath.models.UserLog;
 import com.healthpath.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

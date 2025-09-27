@@ -1,4 +1,4 @@
-package com.healthpath.model;
+package com.healthpath.models;
 
 import com.healthpath.models.User;
 import jakarta.persistence.*;

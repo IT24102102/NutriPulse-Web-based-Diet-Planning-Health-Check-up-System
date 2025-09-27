@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard - HealthPath</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard-styles.css}" />
+</head>
+<body>
+<!-- Header -->
+<header class="dashboard-header">
+    <h1>Welcome, <span th:text="${currentUser.firstName} + ' ' + ${currentUser.lastName}"></span></h1>
+</header>
+
+<!-- Main Content -->
+<div class="dashboard-container">
+    <div class="dashboard-content">
+        <h3>Your Health Journey</h3>
+        <p><strong>Email:</strong> <span th:text="${currentUser.email}"></span></p>
+        <p><strong>Role:</strong> <span th:text="${currentUser.role}"></span></p>
+        <p><strong>Date of Birth:</strong> <span th:text="${#temporals.format(currentUser.dob, 'yyyy-MM-dd')}"></span></p>
+        <p><strong>Age:</strong> <span th:text="${currentUser.age}"></span></p>
+        <p><strong>Phone Number:</strong> <span th:text="${currentUser.phoneNumber} ?: 'Not provided'"></span></p>
+        <a th:href="@{/logout}" class="btn">Logout</a>
+    </div>
+
+    <!-- Functions Container -->
+    <div class="functions-container">
+        <div class="function-card" onclick="window.location.href='/diet-plans'">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img th:src="@{/static/images/DietPlan.jpg}" alt="Diet Plans"
+                         onerror="console.log('Error loading DietPlan.jpg:', this.src); this.style.display='none';" />
+                    <div class="function-title">Diet Plans</div>
+                </div>
+                <div class="card-back">
+                    <p>Explore personalized diet plans.</p>
+                    <a href="/diet-plans" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="function-card" onclick="window.location.href='/communication'">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img th:src="@{/static/images/inception.jpg}" alt="Communication"
+                         onerror="console.log('Error loading inception.jpg:', this.src); this.style.display='none';" />
+                    <div class="function-title">Communication</div>
+                </div>
+                <div class="card-back">
+                    <p>Connect with health experts.</p>
+                    <a href="/communication" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="function-card" onclick="window.location.href='/articles'">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img th:src="@{/static/images/content.jpg}" alt="Articles"
+                         onerror="console.log('Error loading content.jpg:', this.src); this.style.display='none';" />
+                    <div class="function-title">Articles</div>
+                </div>
+                <div class="card-back">
+                    <p>Read health and nutrition tips.</p>
+                    <a href="/articles" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="function-card" onclick="window.location.href='/reminders'">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img th:src="@{/static/images/Reminder.jpg}" alt="Reminders"
+                         onerror="console.log('Error loading Reminder.jpg:', this.src); this.style.display='none';" />
+                    <div class="function-title">Reminders</div>
+                </div>
+                <div class="card-back">
+                    <p>Set health reminders.</p>
+                    <a href="/reminders" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="function-card" onclick="window.location.href='/monitoring'">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img th:src="@{/static/images/track.jpg}" alt="Monitoring"
+                         onerror="console.log('Error loading track.jpg:', this.src); this.style.display='none';" />
+                    <div class="function-title">Monitoring</div>
+                </div>
+                <div class="card-back">
+                    <p>Track your health metrics.</p>
+                    <a href="/monitoring" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="function-card" onclick="window.location.href='/appointment'">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img th:src="@{/static/images/Appointment.png}" alt="Appointment"
+                         onerror="console.log('Error loading Appointment.png:', this.src); this.style.display='none';" />
+                    <div class="function-title">Appointment</div>
+                </div>
+                <div class="card-back">
+                    <p>Schedule health appointments.</p>
+                    <a href="/appointment" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="dashboard-footer">
+    <p>&copy; 2025 HealthPath. All rights reserved. |
+        <a href="/terms">Terms</a> |
+        <a href="/privacy">Privacy</a>
+    </p>
+</footer>
+</body>
+</html>

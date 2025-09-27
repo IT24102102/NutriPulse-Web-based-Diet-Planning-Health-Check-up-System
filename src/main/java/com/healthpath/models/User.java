@@ -1,116 +1,79 @@
 package com.healthpath.models;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long id;
 
-    private String first_name;
-    private String last_name;
-    @Column(unique = true, nullable = false)  // ✅ enforce in DB & JPA
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "name", insertable = false, updatable = false)
+    private String name; // Computed field, handled in DB
+
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
-    private String password_hash;
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+
+    @Column(name = "role", nullable = false)
     private String role;
 
-    private String profile_image_url;
-    private String specialization;
-    private String bio;
-    private String default_meeting_url;
+    @Column(name = "dob")
+    private LocalDateTime dob;
 
-    private Boolean is_enabled;
+    @Column(name = "age")
+    private Integer age;
 
-    // Getters & Setters
-    public Long getUser_id() {
-        return user_id;
-    }
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
-    }
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    public String getFirst_name() {
-        return first_name;
-    }
+    // Constructors
+    public User() {}
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
+    public User(String firstName, String lastName, String email, String passwordHash, String role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-    }
-
-    public String getPassword_hash() {
-        return password_hash;
-    }
-
-    public void setPassword_hash(String password_hash) {
-        this.password_hash = password_hash;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
+        this.passwordHash = passwordHash;
         this.role = role;
+        this.createdAt = LocalDateTime.now();
     }
 
-    public String getProfile_image_url() {
-        return profile_image_url;
-    }
-
-    public void setProfile_image_url(String profile_image_url) {
-        this.profile_image_url = profile_image_url;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public String getDefault_meeting_url() {
-        return default_meeting_url;
-    }
-
-    public void setDefault_meeting_url(String default_meeting_url) {
-        this.default_meeting_url = default_meeting_url;
-    }
-
-    public Boolean getIs_enabled() {
-        return is_enabled;
-    }
-
-    public void setIs_enabled(Boolean is_enabled) {
-        this.is_enabled = is_enabled;
-    }
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getPasswordHash() { return passwordHash; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
+    public LocalDateTime getDob() { return dob; }
+    public void setDob(LocalDateTime dob) { this.dob = dob; }
+    public Integer getAge() { return age; }
+    public void setAge(Integer age) { this.age = age; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }
